@@ -4,6 +4,6 @@
 **_Tabela 1.1_**
 |Course number|Course title|Instructor|
 |-------------|------------|----------|
-|**1**|__R__|Wojtek Gie|
-|**2**|__Markdown__|Wojtek Gie|
-|**3**|__GIT__|Wojtek Gie|
+|**1**|_R_|Wojtek Gie|
+|**2**|_Markdow_|Wojtek Gie|
+|**3**|_GIT_|Wojtek Gie|
