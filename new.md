@@ -9,6 +9,7 @@
 |**3**|_GIT_|Wojtek Gie|
 
 Dobrze wykonana tabrla powinna przypominać tą ze zdjęcia:
+
 ![Nie można wyświetlić zdjęcia](ZdjecieMD.jpg)
 
 ## What I've learnt so far...
