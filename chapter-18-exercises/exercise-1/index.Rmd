@@ -1,0 +1,28 @@
+---
+title: "API NYT"
+author: "Wojtek"
+date: "20 04 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("exercise.R")
+```
+
+## MOVIE REVIEWS
+
+This is to display the **movie review** of the movie: _`r movie_name`_ </br></br>
+The headline of review:
+`r listGrand$headline`
+</br></br>
+
+Summary is:</br>
+```{r summary, echo = FALSE, warning=FALSE, results='asis'}
+cat(listGrand$summary)
+```
+
+```{r raz, echo = FALSE, warning=FALSE, results='asis'}
+markdown <- paste(listGrand$link)
+```
+Link to the review: [Review](`r markdown`)
