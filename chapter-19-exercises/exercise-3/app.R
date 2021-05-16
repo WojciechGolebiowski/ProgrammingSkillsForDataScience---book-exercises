@@ -12,11 +12,11 @@ diamonds_sample <- sample_n(diamonds, 1000)
 
 # For convenience store the `range()` of values for the `price` column
 # (of your sample)
-
+PriceRange <- range(diamonds_sample$price)
 
 # For convenience, get a vector of column names from the `diamonds` data set to
 # use as select inputs
-
+NamesDiamonds <- colnames(diamonds)
 
 # To help keep the code organized, we'll store some UI elements in variables
 # _before_ defining the UI.
@@ -27,34 +27,54 @@ diamonds_sample <- sample_n(diamonds, 1000)
 # - a label of "Price (in dollars)"
 # - min and max valuesvalue based on the `price_range` calculated above
 # - a current value equal to the price range
-
+price_input <- sliderInput(inputId = "price_choice",
+                           label = "Price [USD]",
+                           min = PriceRange[1],
+                           max = PriceRange[2],
+                           value = PriceRange)
 
 # Define a variable `feature_input` that is a `selectInput()` with the
 # label "Feature of Interest". This dropdown should let the user pick one of
 # the columns of the diamond data set. Use the `carat` column as a default
 # Make sure to set an inputId to reference in your server!
-
+feature_input <- selectInput(inputId = "feature_input",
+                             label = "Feature of interest",
+                             choices = NamesDiamonds,
+                             selected = "carat")
 
 # Define a UI using a `fluidPage()` layout with the following content:
-
+ui <- fluidPage(
   # A `titlePanel` with the title "Diamond Viewer"
-
+  titlePanel("Diamond Viewer"),
   # Your `prince_input`
-
+  price_input,
   # Your `feature_input`
-
+  feature_input,
   # A `checkboxInput()` labeled "Show Trendline". It's default value is TRUE
-  
+  checkboxInput(inputId = "TrendLine",label = "Show Trendline",value = TRUE),
 
   # A plotOutput showing the 'plot' output (based on the user specifications)
-  
+  plotOutput("PlotOut"))
 
 
 # Define a `server` function (with appropriate arguments)
 # This function should perform the following:
-
+server <- function(input,output){
   # Assign a reactive `renderPlot()` function to the outputted 'plot' value
-  
+  output$PlotOut <- renderPlot({
+    filtered <- diamonds_sample %>% filter(price > input$price_choice[1],price < input$price_choice[2])
+    
+    
+    Plot1 <- ggplot(data = filtered, 
+                    mapping = aes_string(x = input$feature_input, y = "price", color = "cut")) +
+      geom_point()
+    
+    if(input$TrendLine){
+      Plot1 <- Plot1 + geom_smooth(se = FALSE)
+    }
+    
+    Plot1
+  })
     # This function should first filter down the `diamonds_sample` data
     # using the input price range (remember to get both ends)!
     
@@ -71,6 +91,6 @@ diamonds_sample <- sample_n(diamonds, 1000)
   
     # Be sure and return the completed plot!
   
-
+}
 # Create a new `shinyApp()` using the above ui and server
-
+shinyApp(ui = ui, server = server)
