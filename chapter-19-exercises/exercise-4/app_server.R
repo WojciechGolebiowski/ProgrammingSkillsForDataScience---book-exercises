@@ -11,10 +11,10 @@ server <- function(input, output) {
     # return the plot
     ggplot(data = income_growth) +
       geom_point(mapping = aes(
-        x = Income.Percentile, y = Average.Growth.Perc
+        x = ï.¿Income.Percentile, y = Average.Growth.Perc
       ), color = "gray") +
       geom_point(mapping = aes(
-        x = Income.Percentile, y = Post.Tax.Growth.Perc
+        x = ï.¿Income.Percentile, y = Post.Tax.Growth.Perc
       ), color = "red") +
       labs(x = "Income Percentile", y = "Income Growth (%)") +
       scale_x_continuous(limits = input$percentile)
