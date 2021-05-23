@@ -9,7 +9,7 @@ To complete the exercise, follow the below steps:
 
 2. Create and `checkout` a new branch called `danger`
 
-  (With Atom on Windows, you will need to close the editor before you commit or change branches).
+  (With Atom on Windows, you will need to close the editor before you commit or change branches). "Warning!"
 
 3. On the `danger` branch, use Atom or another text editor to change the above block-quoted line so it contains the word "Warning!" It should still be in a block-quote.
 
