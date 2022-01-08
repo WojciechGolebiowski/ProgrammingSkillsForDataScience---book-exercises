@@ -1,0 +1,134 @@
+---
+title: "Przykład"
+author: "Wojtek"
+date: "18 04 2021"
+output: html_document
+#FORMAT YAML - sposob formatowania ustrukturyzowanych danych - jest to nadzbiór JSON i prezentuje podobne struktury
+#ale w innej formie (wciecia i myslniki zamiast klamr i przecinkow
+#zawiera metadane czyli dane o pliku)
+---
+
+Zwykly tekst w formacie Markdown. Np tutaj **pogrubienie** a tu _kursywa_.
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars, echo = FALSE, message=TRUE}
+#wykonywalny fragment kodu 
+#po slowie kluczu 'r' mozna okreslic dodatkowe opcje konfiguracyjne
+#echo - pokazywanie kodu w pliku markdown
+#message - wyswietlac generowane przez kod komunikaty?
+#include - czy wyniki dzialania kodu maja byc wyswietlane w raporcie. Przydatne FALSE np w pierwszym bloku z
+#ladowaniem bibliotek i source() do innych kodow
+#eva - pokazanie kodu ale nie wywolywanie go
+#cars w tym przypadku to etykieta danego bloku
+summary(cars)
+```
+
+## KODY WEWNATRZWIERSZOWE
+
+Wyswietlanie kodu wewnatrzwierszowo:
+
+```{r test, echo = FALSE}
+Raz <- 3+4
+```
+Wynik dzialania to `r Raz` 
+` sluzy do wyswietlania tekstu jako kodu R w jezyku Markdown
+
+## PRINT
+```{r print, echo = FALSE}
+print("Hello World")
+```
+
+Lepiej wyglada print generowany wewnatrzwierszowo. Jak tu:
+```{r print2}
+Hello <- "Hello World"
+```
+Wewnatrz `r Hello`
+
+Mozna tez wywolac z bloku kodu tekst bezposrednio sformatowany jak plik Markdown:
+Nalezy dodac opcje results = 'asis'
+```{r print3, results='asis'}
+cat("**Witaj Swiecie**")
+```
+
+## LISTY
+
+W wyjsciowych lancuchach uwzgledniane sa znaczniki markdown, dlatego takie cos potraktowane zostanie jak lista
+```{r lista}
+markdown_lista <- "
+- raz
+- dwa
+- trzy
+- cztery"
+```
+
+`r markdown_lista`
+
+
+Inne podejscie
+```{r lista2}
+wektor <- c("Raz", "**Dwa**","_Trzy_","Cztery")
+
+wektor_list <- paste("-",wektor,collapse = "\n")
+```
+
+`r wektor_list`
+
+
+## TABELE
+
+funkcja kable() przeksztalca kod w R (ramki danych na tabele Markdown - z pakietu knitr)
+```{r kable}
+library(knitr)
+
+letters <- c("**a**","_b_","c","d")
+numbers <- c(1:4)
+df <- data.frame(letters = letters,numbers = numbers)
+
+kable(df)
+```
+kableExtra sluzy do modyfikowania tabel
+
+## WYKRESY
+
+Wyswietlanie wykresu:
+
+```{r wykres}
+library(ggplot2)
+
+ggplot(midwest) +
+  geom_point(mapping = aes(x = percollege, y = percadultpoverty, color = state)) +
+  scale_color_brewer(palette = "Set3")
+
+
+```
+
+
+Udostepnianie w formie pliku HTML - HyperText Markup Language
+Jest to jezyk opisujacy struktury i formatujacy tresci ktory moze byc bezposrednio wyswietlany w przegladarkach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
