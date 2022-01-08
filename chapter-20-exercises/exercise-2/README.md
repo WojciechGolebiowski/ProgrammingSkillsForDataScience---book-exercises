@@ -8,8 +8,7 @@ To complete the exercise, follow the below steps:
 1. You should have cloned _this_ exercise repository. Make sure you are on the `master` branch, and that all changes are committed.
 
 2. Create and `checkout` a new branch called `danger`
-
-  (With Atom on Windows, you will need to close the editor before you commit or change branches).
+  (With Atom on Windows, you will need to close the editor before you commit or change branches). "You talkin to me??"
 
 3. On the `danger` branch, use Atom or another text editor to change the above block-quoted line so it contains the word "Warning!" It should still be in a block-quote.
 
